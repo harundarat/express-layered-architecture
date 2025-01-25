@@ -1,10 +1,17 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const cors require("cors");
 const port = process.env.PORT;
 const prisma = require("./config/database");
 const routes = require("./routes");
 
+const corsOptions = {
+  credentials: true,
+  origin: "*",
+};
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 app.use(express.json());
 
 app.get("/api", (req, res) => {
