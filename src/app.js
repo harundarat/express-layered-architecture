@@ -6,14 +6,8 @@ const port = process.env.PORT;
 const prisma = require("./config/database");
 const routes = require("./routes");
 
-const corsOptions = {
-  credentials: true,
-  origin: "*",
-};
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
 app.use(express.json());
-
+app.use(cors({ credentials: true, origin: "*" }));
 app.get("/api", (req, res) => {
   res.send("Welcome to API");
 });
